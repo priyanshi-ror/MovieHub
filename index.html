@@ -3,13 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="./output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>MovieHub</title>
 </head>
-<body>
-    <form action="">
-        <input id="movie-search" type="text">
-        <button id="btn" >Search</button>
-    </form>
+<body class="min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
+    <header class="site-header sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="logo-wrap text-xl font-black tracking-tight text-white group">
+                    <span class="logo-mark">M</span>
+                    <span>Movie<span class="text-red-500">Hub</span></span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#search" class="nav-link">Search</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <button id="hamburger" class="md:hidden p-2 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 cursor-pointer focus:outline-none" aria-label="Toggle navigation menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <div id="options" class="mobile-menu hidden flex-col md:hidden absolute top-20 left-0 right-0 px-6 py-4 space-y-4 shadow-xl">
+                    <a href="index.html" class="text-zinc-300 hover:text-red-500 font-medium text-base transition-colors">Home</a>
+                    <a href="#about" class="text-zinc-300 hover:text-red-500 font-medium text-base transition-colors">About</a>
+                    <a href="#search" class="text-zinc-300 hover:text-red-500 font-medium text-base transition-colors">Search</a>
+                    <a href="#contact" class="text-zinc-300 hover:text-red-500 font-medium text-base transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        <section class="page-hero" id="search">
+            <div class="hero-panel">
+                <span class="hero-badge">Now streaming</span>
+                <h1 class="hero-title">Find your next cinematic obsession.</h1>
+                <p class="hero-subtitle">Discover trending stories, iconic classics, and hidden gems with personalized movie exploration built for film lovers.</p>
+
+                <form id="movieForm" class="search-shell">
+                    <div class="search-icon">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+
+                    <input
+                        id="movieInput"
+                        type="text"
+                        placeholder="Search movie title (e.g. Inception, The Matrix)..."
+                        autocomplete="off"
+                        class="search-input"
+                    >
+
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+
+                <div class="chip-row">
+                    <span class="chip">Action</span>
+                    <span class="chip">Drama</span>
+                    <span class="chip">Thriller</span>
+                    <span class="chip">Sci‑Fi</span>
+                </div>
+            </div>
+
+            <div class="spotlight-card">
+                <div class="spotlight-content">
+                    <p class="mini-label">Editor's pick</p>
+                    <h2>Blade Runner 2049</h2>
+                    <div class="spotlight-meta">
+                        <span>2027</span>
+                        <span>•</span>
+                        <span>Sci‑Fi</span>
+                        <span>•</span>
+                        <span>8.0/10</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="info-strip">
+            <article class="info-card">
+                <span class="card-kicker">Curated</span>
+                <h3>Handpicked picks</h3>
+                <p>Browse a thoughtful mix of classics, modern favorites, and cult cinema picks.</p>
+            </article>
+            <article class="info-card">
+                <span class="card-kicker">Fast</span>
+                <h3>Quick search</h3>
+                <p>Find titles instantly with an easy, responsive search experience.</p>
+            </article>
+            <article class="info-card">
+                <span class="card-kicker">Details</span>
+                <h3>Movie insights</h3>
+                <p>Go deeper with cast, plot, ratings, and IMDb information on every selection.</p>
+            </article>
+        </section>
+
+        <div class="results-header">
+            <h2>Popular Picks</h2>
+            <span>Fresh for you</span>
+        </div>
+
+        <div id="movieHub" class="movie-grid min-h-[200px]"></div>
+    </main>
+
+    <footer id="contact" class="site-footer py-8 text-center text-sm text-zinc-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v3h2.5l1.5-3H4zm4.5 0l-1.5 3h3l1.5-3H8.5zm5 0l-1.5 3h3l1.5-3h-3zm5 0l-1.5 3H20V6h-1.5zM4 11v7h16v-7H4z"/>
+                </svg>
+                <span class="font-semibold text-zinc-300">MovieHub</span>
+            </div>
+            <p>&copy; 2026 MovieHub. All rights reserved.</p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
